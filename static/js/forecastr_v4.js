@@ -11,6 +11,7 @@ $(document).ready(function(){
     // **** Connect SocketIO **** //
 
     // start up a SocketIO connection to the server - http(s):// needs to be set as http when run locally, and https when pushed to production.
+    var socket = io.connect('http://localhost:3000');
     var socket = io.connect('https://' + document.domain + ':' + location.port);
 
     // The callback function is invoked when a connection with the server is established.
@@ -20,6 +21,240 @@ $(document).ready(function(){
         socket.emit('connection_msg', {data: 'I\'m connected!'});
 
     });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('disconnect', function() {
+
+        // Successful connection message
+        socket.emit('disconnection_msg', {data: 'I\'m disconnected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('reconnect', function() {
+
+        // Successful connection message
+        socket.emit('reconnect_msg', {data: 'I\'m reconnected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('reconnect_attempt', function() {
+
+        // Successful connection message
+        socket.emit('reconnect_attempt_msg', {data: 'I\'m reconnecting!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('reconnecting', function() {
+
+        // Successful connection message
+        socket.emit('reconnecting_msg', {data: 'I\'m reconnecting!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('reconnect_error', function() {
+
+        // Successful connection message
+        socket.emit('reconnect_error_msg', {data: 'I\'m reconnecting!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('reconnect_failed', function() {
+
+        // Successful connection message
+        socket.emit('reconnect_failed_msg', {data: 'I\'m reconnecting!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('error', function() {
+
+        // Successful connection message
+        socket.emit('error_msg', {data: 'I\'m reconnecting!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect_error', function() {
+
+        // Successful connection message
+        socket.emit('connect_error_msg', {data: 'I\'m reconnecting!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect_timeout', function() {
+
+        // Successful connection message
+        socket.emit('connect_timeout_msg', {data: 'I\'m reconnecting!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('ping', function() {
+
+        // Successful connection message
+        socket.emit('ping_msg', {data: 'I\'m reconnecting!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('pong', function() {
+
+        // Successful connection message
+        socket.emit('pong_msg', {data: 'I\'m reconnecting!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established.
+    socket.on('connect', function() {
+
+        // Successful connection message
+        socket.emit('connection_msg', {data: 'I\'m connected!'});
+
+    });
+
+    // The callback function is invoked when a connection with the server is established
 
 
     // **** Function to Handle Data from CSV File **** //
