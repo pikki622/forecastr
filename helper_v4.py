@@ -111,7 +111,7 @@ def forecastr(data,forecast_settings,column_headers,freq_val,build_settings):
     prophet_arg_vals = {}
 
     for key,value in model_arg_vals.items():
-        if (value == "") or (value == False) or (value == 0) or (value == 'auto'):
+        if value in ["", False, 0, 'auto']:
             print('skipping this key value pair')
         else:
             prophet_arg_vals[key] = value
@@ -242,20 +242,15 @@ def validate_model(model,dates):
 
     count_of_time_units = len(dates)
     #print(count_of_time_units)
-    initial_size = str(int(count_of_time_units * 0.20)) + " days"
-    horizon_size = str(int(count_of_time_units * 0.10)) + " days"
-    period_size = str(int(count_of_time_units * 0.05)) + " days"
+    initial_size = f"{int(count_of_time_units * 0.2)} days"
+    horizon_size = f"{int(count_of_time_units * 0.1)} days"
+    period_size = f"{int(count_of_time_units * 0.05)} days"
 
     df_cv = cross_validation(model, initial=initial_size, horizon=horizon_size, period=period_size)
     #df_cv = cross_validation(model,initial='730 days', period='180 days', horizon = '365 days')
     df_p = performance_metrics(df_cv)
 
-    #print(df_cv.head(100))
-    #print(df_p.head(100))
-
-    mape_score_avg = str(round(df_p['mape'].mean()*100,2)) + "%"
-
-    return mape_score_avg
+    return str(round(df_p['mape'].mean()*100,2)) + "%"
 
 
 
@@ -273,14 +268,7 @@ def check_val_of_forecast_settings(param):
     """
 
 
-    # Check hyper parameter value and return appropriate value.
-    if (param == "") or (param == False) or (param == 'auto'):
-        new_arg = param
-        return new_arg
-
-    else:
-        new_arg = float(param)
-        return new_arg
+    return param if param in ["", False, 'auto'] else float(param)
 
 
 
@@ -320,7 +308,7 @@ def get_summary_stats(data,column_headers):
     print(data[metric].mean())
 
     mean = str(round(data[metric].mean(),2))
-    print('string of the mean is ' + mean)
+    print(f'string of the mean is {mean}')
 
 
     std = str(round(data[metric].std(),2))
@@ -385,7 +373,9 @@ def preprocessing(data):
 
     # Check to see if the data has any null values
 
-    print('Is there any null values in this data? ' + str(data.isnull().values.any()))
+    print(
+        f'Is there any null values in this data? {str(data.isnull().values.any())}'
+    )
 
     # If there is a null value in the dataset, locate it and emit the location of the null value back to the client, else continue:
 
@@ -401,10 +391,7 @@ def preprocessing(data):
         # Need to add 2 to each value in null_rows because there
 
         print('######### ROWS + 2 = ACTUAL ROW NUMBERS IN CSV ##############')
-        update_these_rows = []
-        for x in null_rows:
-            update_these_rows.append(int(x)+2)
-
+        update_these_rows = [int(x)+2 for x in null_rows]
         print(update_these_rows)
 
         emit('error', {'data': update_these_rows})
@@ -418,17 +405,17 @@ def preprocessing(data):
         print('no nulls found')
 
 
-    if isinstance(col1_val, (int, np.integer)) or isinstance(col1_val, float):
-        print(str(col1_val) + ' this is a metric')
+    if isinstance(col1_val, (int, np.integer, float)):
+        print(f'{str(col1_val)} this is a metric')
         print('Setting time_unit as the second column')
         time_unit = column_headers[1]
         metric_unit = column_headers[0]
-        return [time_unit, metric_unit]
     else:
         print('Setting time_unit as the first column')
         time_unit = column_headers[0]
         metric_unit = column_headers[1]
-        return [time_unit, metric_unit]
+
+    return [time_unit, metric_unit]
 
 
 
@@ -491,10 +478,7 @@ def determine_timeframe(data, time_unit):
     else:
         print('error?')
 
-    time_list = [time,freq, desc]
-    #print(time_list)
-
-    return time_list
+    return [time,freq, desc]
 
 
 
